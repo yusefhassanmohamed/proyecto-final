@@ -43,6 +43,8 @@
                                     class="fas fa-home me-2"></i>Home</a>
                             <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                     class="fas fa-bullhorn me-2"></i>Reportes</a>
+                            <a href="index.php?c=Tecnico&a=mostrarTrabajos&id=<?php echo $_SESSION['idusuario']; ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                                    class="fas fa-bullhorn me-2"></i>Trabajos</a>
                             <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                     class="fas fa-project-diagram me-2"></i>Contacto</a>
                             <a href="index.php?c=login&a=cerrar" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
@@ -58,7 +60,7 @@
                                         class="fas fa-users me-2"></i>Usuarios</a>
                                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                         class="fas fa-tv me-2"></i>Productos</a>
-                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                                <a href="index.php?c=Parte&a=mostrar" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                         class="fas fa-bullhorn me-2"></i>Reportes</a>
                                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                         class="fas fa-project-diagram me-2"></i>Contacto</a>

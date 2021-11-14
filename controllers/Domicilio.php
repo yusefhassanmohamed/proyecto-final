@@ -36,9 +36,10 @@
             $data['cliente'] = $cliente->get_cliente_id($data["domicilio"]['idcliente']);
             $producto = new Producto_model();
             $data["productos"] = $producto->get_productos($id);
+
             /* Elimino los productos asociados al domicilio */
             foreach($data["productos"] as $productoAux){
-                $producto->eliminarProducto($productoAux['$idproducto']);
+                $producto->eliminarProducto($productoAux['idproducto']);
             }
             /* Elimino el domicilio */
             $domicilio->eliminarDomicilio($id);

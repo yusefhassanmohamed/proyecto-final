@@ -10,7 +10,9 @@ function cargarControlador($controlador){
     if(!is_file($archivoControlador)){
         $archivoControlador = 'controllers/'.CONTROLADOR_PRINCIPAL.'.php';
     }
-    else{}
+    else{
+        
+    }
     //echo $archivoControlador;
     require_once $archivoControlador;
     $control = new $nombreControlador();

@@ -7,6 +7,27 @@
             require_once "models/Producto.php";
         }
 
+        public function nuevoProducto($id){
+            require_once "views/producto/nuevo.php";
+        }
+
+        public function insertar($id){
+            /* Recojo datos */
+            $nombre = $_POST['nombre'];
+            $marca = $_POST['marca'];
+            $fecha_registro = date('Y-m-d');
+            $iddomicilio = $id;
+
+            $domicilio = new Domicilio_model();
+            $data['domicilio'] = $domicilio->get_domicilio($iddomicilio);
+
+            /* Inserto datos */
+            $producto = new Producto_model();
+            $producto->insertarProducto($nombre, $marca, $fecha_registro, $iddomicilio);
+
+            header('Location: index.php?c=Domicilio&a=mostrarDomicilio&id='.$iddomicilio);
+        }
+
         public function mostrarProducto($id){
             $producto = new Producto_model();
             $domicilio = new Domicilio_model();
@@ -26,10 +47,10 @@
 
         public function eliminar($id){
             $producto = new Producto_model();
+            $data['domicilio'] = $producto->get_producto($id);
             if($producto->get_producto($id)){
                 $producto->eliminarProducto($id);
-                header('Location: index.php?c=Usuario&a=mostrar');
+                header('Location: index.php?c=Domicilio&a=mostrarDomicilio&id='.$data['domicilio']['iddomicilio']);
             }
-
         }
     }

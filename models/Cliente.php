@@ -14,6 +14,13 @@ class Cliente_model extends Usuario_model{
 
         return $row;
     }
+    
+    public function get_clientes(){
+        $sql = "SELECT * FROM cliente";
+        $resultado = $this->db->query($sql);
+
+        return $resultado;
+    }
 
     public function get_cliente_id($id){
         $sql = "SELECT * FROM cliente WHERE idcliente='$id' LIMIT 1";

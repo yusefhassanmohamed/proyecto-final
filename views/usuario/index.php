@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row">
             <div class="col"><h3><a href="index.php?c=Cliente&a=nuevoCliente"><i class="fas fa-plus m-2 p-2">Cliente</i></a></h3></div>
-            <div class="col"><h3><a href=""><i class="fas fa-plus m-2 p-2">Técnico</i></a></h3></div>
-            <div class="col"><h3><a href=""><i class="fas fa-plus m-2 p-2">Gestor</i></a></h3></div>
+            <div class="col"><h3><a href="index.php?c=Tecnico&a=nuevoTecnico"><i class="fas fa-plus m-2 p-2">Técnico</i></a></h3></div>
+            <div class="col"><h3><a href="index.php?c=Gestor&a=nuevoGestor"><i class="fas fa-plus m-2 p-2">Gestor</i></a></h3></div>
         </div>
     </div>
         <div class="table-responsive col-lg-12">

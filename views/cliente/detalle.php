@@ -108,6 +108,58 @@
             </table>
         </div>
     </section>
+    <section>
+        <div class="table-responsive col-lg-12">
+            <table class="table table-light table-striped table-hover table-borderless">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach($data["partes"] as $parte):?>
+                    <tr>
+                        <th scope="row"><?php echo $parte["idparte"]; ?></th>
+                        <td>
+                            <?php echo $parte["idproducto"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $parte["fecha_parte"]; ?>
+                        </td>
+                        <td>
+                            <a href="index.php?c=Parte&a=mostrarParte&id=<?php echo $parte["idparte"]; ?>"><i class="far fa-eye"></i></a>
+                            &nbsp;&nbsp;
+                            <a data-bs-toggle="modal" data-bs-target="#confirmParte<?php echo $parte["idparte"];?>"><i class="far fa-trash-alt"></i></a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirmParte<?php echo $parte["idparte"];?>" tabindex="-1" aria-labelledby="eliminarParteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="eliminarParteModalLabel">Atención</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>Se eliminarán los datos.</p>
+                                            <p>¿Continuar?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn secondary-button" data-bs-dismiss="modal">No</button>
+                                            <a href="index.php?c=Parte&a=eliminar&id=<?php echo $parte["idparte"]; ?>" class="btn primary-button">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
     
     
 </div>

@@ -3,8 +3,12 @@
         public function __construct(){
             require_once "models/Usuario.php";
             require_once "models/Cliente.php";
+            require_once "models/Tecnico.php";
+            //require_once "models/Gestor.php";
             require_once "models/Domicilio.php";
             require_once "models/Producto.php";
+            require_once "models/Parte.php";
+            require_once "models/Trabajo.php";
         }
 
         public function mostrar(){
@@ -19,11 +23,19 @@
             if($data["usuario"]["rol"]=='CLIENTE'){
                 $cliente = new Cliente_model();
                 $domicilio = new Domicilio_model();
+                $parte = new Parte_model();
+                $producto = new Producto_model();
                 $data["cliente"] = $cliente->get_cliente($id);
                 $data["domicilios"] = $domicilio->get_domicilios($data["cliente"]["idcliente"]);
+                $data["partes"] = $parte->get_partes($data["cliente"]["idcliente"]);
+                $data["productos"] = $producto->get_productos($data["cliente"]["idcliente"]);
                 require_once "views/cliente/detalle.php";
             }
             elseif($data["usuario"]["rol"]=='TECNICO'){
+                $tecnico = new Tecnico_model();
+                $trabajo = new Trabajo_model();
+                $data["tecnico"] = $tecnico->get_tecnico($id);
+                $data["trabajos"] = $trabajo->get_trabajos($data["tecnico"]["idtecnico"]);
                 require_once "views/tecnico/detalle.php";
             }
             elseif($data["usuario"]["rol"]=='GESTOR'){
@@ -54,6 +66,26 @@
                     $domicilio->eliminarDomicilio($domicilioAux['iddomicilio']);
                 }
                 $cliente->eliminarCliente($data['cliente']['idcliente']);
+                $usuario->eliminarUsuario($id);
+            }
+            
+            else if($data["usuario"]["rol"]=='TECNICO'){
+                $tecnico = new Tecnico_model();
+                $trabajo = new Trabajo_model();
+                $parte = new Parte_model();
+                $data["tecnico"] = $tecnico->get_tecnico($id);
+                $data["trabajos"] = $trabajo->get_trabajos($data["tecnico"]["idtecnico"]);
+
+                foreach($data["trabajos"] as $trabajoAux){
+                    $parteAux = $parte->get_parte($trabajoAux['idparte']);
+                    /* Si el parte está en estado "OCUPADO", se cambiará el estado a LIBRE antes de borrar el trabajo */
+                    if($parteAux['estado'] == 'OCUPADO'){
+                        $estado = 'LIBRE';
+                        $parte->modificar_parte_estado($trabajoAux['idparte'], $estado);
+                    }
+                    $trabajo->eliminarTrabajo($trabajoAux['idtrabajo']);
+                }
+                $tecnico->eliminarTecnico($data['tecnico']['idtecnico']);
                 $usuario->eliminarUsuario($id);
             }
             header('Location: index.php?c=Usuario&a=mostrar');

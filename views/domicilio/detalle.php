@@ -17,7 +17,7 @@
         <div class="col-md mb-2 campo"><b>Puerta: </b><?php echo $data["domicilio"]["puerta"]; ?></div>
     </div>
         <div class="row">
-            <div class="col text-center"><h3><a href=""><i class="fas fa-plus m-2 p-2">Producto</i></a></h3></div>
+            <div class="col text-center"><h3><a href="index.php?c=Producto&a=nuevoProducto&id=<?php echo $data["domicilio"]["iddomicilio"]; ?>"><i class="fas fa-plus m-2 p-2">Producto</i></a></h3></div>
         </div>
     <section>
         <div class="table-responsive col-lg-12">

@@ -12,6 +12,18 @@ class Producto_model{
         return $resultado;
     }
 
+    public function get_all_productos(){
+        $sql = "SELECT * FROM producto";
+        $resultado = $this->db->query($sql);
+
+        return $resultado;
+    }
+
+    public function insertarProducto($nombre, $marca, $fecha_registro, $iddomicilio){
+        $resultado = $this->db->query("INSERT INTO producto (nombre, marca, fecha_registro, iddomicilio)
+        VALUES ('$nombre', '$marca', '$fecha_registro', '$iddomicilio')");
+    }
+
     public function get_producto($id){
         $sql = "SELECT * FROM producto WHERE idproducto='$id' LIMIT 1";
         $resultado = $this->db->query($sql);
